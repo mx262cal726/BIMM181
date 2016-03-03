@@ -1,18 +1,35 @@
 __author__ = 'kyle rouse'
 
 
-def squared_error_distortion(data):
-    centers = data[0]
-    dataPoints = data[1]
+def d(data1, data2):
     value = 0
+    for i in range(len(data1)):
+        value += (data1[i] - data2[i])**2
+    return value
 
+
+def squared_error_distortion(data):
+
+    centers = [map(float, i.split(" ")) for i in data[0]]
+    dataPoints = [map(float, i.split(" "))for i in data[1]]
+    distance = 0
     for i in dataPoints:
-        val = 0
-        for j in centers:
+        mdist = min_dist(i,centers)
+        distance += mdist[0]
 
-            val += farthest(map(float,j.split(" ")),map(float,i.split(" ")))
-        value += val**2
-    print value*(1.0/len(dataPoints))
+    return distance*(1.0/len(dataPoints))
+
+
+def min_dist(point, centers):
+    tmp = []
+    dist = 0
+    list_order = []
+    for i in centers:
+        if i != point:
+            dist += d(point, i)
+            list_order.append((d(point,i),i))
+    tmp.append((i, dist))
+    return min(list_order,key=lambda x:x[0])
 
 
 def farthest(data1, data2):
@@ -24,7 +41,6 @@ def farthest(data1, data2):
 
 def main(text):
     lines = open(text).read().split("\n")
-    km = lines[0]
     centers = []
     store = []
     for i in lines[1:]:
@@ -33,10 +49,10 @@ def main(text):
             centers = []
             continue
         centers.append(i)
+
     store.append(centers)
     print squared_error_distortion(store)
-    print store
 
 
 if __name__ == '__main__':
-    main("input")
+    main("rosalind_ba8b.txt")

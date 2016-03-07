@@ -5,6 +5,12 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="S:\HHD\Program Files (8.1)\Anaconda\Lib\site-packages\numpy-1.12.0.dev0+8c4048a-py2.7-win-amd64.egg\numpy" />
+  </component>
+  <component name="PyDocumentationSettings">
+    <option name="myDocStringFormat" value="NumPy" />
+  </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
